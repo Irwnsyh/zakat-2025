@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Zakat</title>
+</head>
+<body>
+    <h2>Daftar Peserta Zakat</h2>
+    <table border="1">
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Zakat Fitrah</th>
+            <th>Zakat Kifarat</th>
+            <th>Zakat Harta</th>
+        </tr>
+        {% for i, row in enumerate(data, start=1) %}
+        <tr>
+            <td>{{ i }}</td>
+            <td>{{ row["Nama"] }}</td>
+            <td>{{ row["Zakat Fitrah"] }}</td>
+            <td>{{ row["Zakat Kifarat"] }}</td>
+            <td>{{ row["Zakat Harta"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if is_admin %}
+        <a href="{{ url_for('download_excel') }}">📥 Download Excel</a>
+        <a href="{{ url_for('logout') }}">🚪 Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">🔑 Login Admin</a>
+    {% endif %}
+</body>
+</html>
